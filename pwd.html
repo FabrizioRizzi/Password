@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Password generator</title>
+   	<link rel="stylesheet" href="pwd.css">
+   	<script src="pwd.js"></script>
+</head>
+
+<body>
+    <section>
+        <h1 id="heading">Password generator</h1>
+        
+        <label for="set">Select the charset:</label>
+        <input type="radio" name ="set" value="0"> Minuscole, maiuscole e numeri
+        <input type="radio" name ="set" value="1"  checked> Minuscole, maiuscole, numeri e caratteri speciali<br>
+        
+        <label for="num">Password length:</label>
+        <input type="text" id="num" value="8">
+        <span id="error">*</span><br>
+        
+        <label for="pwd">You password is:</label>
+        <input type="text" id="pwd" disabled="disabled"><br>
+        
+        <label>&nbsp;</label>
+        <input type="button" id="clear" value="Clear">
+        <input  type="button" id="generate" value="Generate"><br>
+    </section>
+</body>
+</html>
