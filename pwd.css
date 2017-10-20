@@ -1,26 +1,136 @@
 
 body {
     font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 16px;
     margin: 0 auto;
-    width: 800px;
+    color: #666;
+    width: 90%;
 }
-section {
-    padding: 0 1em .5em;
+
+@media only screen and (min-width: 960px) {
+    body {
+        width: 50%;
+    }
 }
-h1 {
-	margin: .5em 0;
+
+header {
+    text-align: center;
 }
-label {
-	float: left;
-    width: 10em;
-    text-align: right;
-    padding-bottom: .5em;
+
+/*******  SECTIONS  ************/
+.RadioButton {
+    margin-bottom: 16px;
 }
-input {
-    margin-left: 1em;
-    margin-bottom: .5em;
+
+.PassLength {
+    margin-bottom: 16px;
 }
+
+.Password {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 20px;
+    height: 100px;
+}
+
+.Buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.CharsetSelect {
+    padding: 8px 0;
+}
+
+.SpecialCharacters {
+    margin: 10px 0 10px 30px;
+    display: flex;
+    align-items: center;
+}
+.numPassLength {
+    border: 0;
+    background-color: #EEEEEE;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: #666;
+    width: 50px;
+    text-align: center;
+}
+
 #error {
     color: red;
-    font-size: 10px;
+    font-size: 12px;
+}
+
+.finalPassword {
+    font-family: monospace;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.Button {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    color: #666;
+    padding: 10px;
+    cursor: pointer;
+    min-width: 140px;
+    margin: 5px;
+    background: #CCC;
+    border: 0;
+}
+
+.Button:hover {
+    color: #CCC;
+    background: #666;
+}
+
+/******** RADIO *********/
+input[type="radio"] {
+    display: none;
+}
+
+input[type=radio] + label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+input[type=radio] + label:before {
+    content: "";
+    display: inline-block;
+    border: 3px solid #CCC;
+    min-width: 20px;
+    min-height: 20px;
+    background-color: #CCC;
+    border-radius: 50%;
+    margin-right: 6px;
+    transition: all 0.2s linear;
+}
+
+input[type=radio]:checked + label:before {
+    content: "";
+    background-color: #666;
+    border: 3px solid #CCC;
+    min-width: 20px;
+    min-height: 20px;
+}
+
+/******** CHECKBOXES *********/
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color: #CCCCCC;
+    cursor: pointer;
+    border-radius: 3px;
+    margin: 0 10px 0 20px;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #32CD32;
 }

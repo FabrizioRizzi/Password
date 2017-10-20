@@ -1,40 +1,51 @@
-var $ = function (id) {
+var select = function (id) {
     return document.getElementById(id);
-}
-var generateClick = () => {
-	let set;
-	let num = parseInt($("num").value);
-	let pwd = "";
-	let value2 = false;
-	if (document.getElementsByName('set')[0].checked) {
-		set ="abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-	} else {
-		set ="abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"=?@"
-	}
-	if (isNaN(num) || num <= 0 || num > 20){
-		$("error").firstChild.nodeValue = "Length must be a number between 1 and 20";
-	} else {
-		value2 = true;
-	}
-	if (value2) {
-		for (i = 1; i <= num; i++) {
-			pwd += set.charAt(Math.floor(Math.random() * set.length));
-		}
-	}
-	if (!pwd.match(/!|\"|\=|\?|\@/g) && !document.getElementsByName('set')[0].checked) {
-		pwd = pwd.slice(0, -1);
-		pwd += "!\"=?@".charAt(Math.floor(Math.random() * "!\"=?@".length))
-	}
-	$("pwd").value = pwd;
-}
-var clear = () => {
-			$("num").value = "8";
-			$("pwd").value = "";
-			$("error").firstChild.nodeValue = "*";
-			$("num").select();
-}
-window.onload = () => {
-	$("clear").onclick = clear;
-	$("generate").onclick = generateClick;
-	$("num").select();
-}
+};
+
+var generate = function () {
+    var charSet = "";
+    var specialCharSet = "";
+    var passLength = parseInt(select("passLength").value);
+    var pwd = "";
+
+    switch (document.querySelector('input[name = "charSet"]:checked').value) {
+        case "minuscoleMaiuscoleNumeri":
+            charSet = "abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            break;
+        case "minuscoleMaiuscoleNumeriSpecial":
+            charSet = "abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            specialCharSet += select("!").checked ? select("!").value : "";
+            specialCharSet += select("?").checked ? select("?").value : "";
+            specialCharSet += select("$").checked ? select("$").value : "";
+            specialCharSet += select("%").checked ? select("%").value : "";
+            specialCharSet += select("&").checked ? select("&").value : "";
+            charSet += specialCharSet;
+            break;
+        case "numeri":
+            charSet = "0123456789";
+    }
+
+    if (isNaN(passLength) || passLength <= 0 || passLength > 20) {
+        select("error").innerHTML = "Length must be a number between 1 and 20";
+        pwd = "-";
+    } else {
+        for (var i = 1; i <= passLength; i++) {
+            pwd += charSet.charAt(Math.floor(Math.random() * charSet.length));
+        }
+        //TODO regex from the special chars selected and decide how many special char in pwd
+        if (select('minuscoleMaiuscoleNumeriSpecial').checked && !pwd.match(/[!?$%&]/g)) {
+            var randomSpecialChar = specialCharSet.charAt(Math.floor(Math.random() * specialCharSet.length));
+            pwd = pwd.split('');
+            pwd.splice(Math.floor(Math.random() * pwd.length), 1, randomSpecialChar);
+            pwd = pwd.join('');
+        }
+    }
+    select("pwd").innerHTML = pwd;
+};
+
+var refresh = function () {
+    select("passLength").value = "8";
+    select("pwd").innerHTML = "(Click Generate)";
+    select("error").firstChild.nodeValue = "*";
+};
+

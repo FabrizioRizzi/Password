@@ -1,30 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Password generator</title>
-   	<link rel="stylesheet" href="pwd.css">
-   	<script src="pwd.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password generator</title>
+    <link rel="stylesheet" href="pwd.css">
 </head>
 
 <body>
-    <section>
-        <h1 id="heading">Password generator</h1>
-        
-        <label for="set">Select the charset:</label>
-        <input type="radio" name ="set" value="0"> Minuscole, maiuscole e numeri<br>
-        <input type="radio" name ="set" value="1"  checked> Minuscole, maiuscole, numeri e caratteri speciali<br>
-        
-        <label for="num">Password length:</label>
-        <input type="text" id="num" value="8">
-        <span id="error">*</span><br>
-        
-        <label for="pwd">You password is:</label>
-        <input type="text" id="pwd" disabled="disabled"><br>
-        
-        <label>&nbsp;</label>
-        <input type="button" id="clear" value="Clear">
-        <input  type="button" id="generate" value="Generate"><br>
+<header>
+    <h1 id="heading">Password generator</h1>
+</header>
+<main>
+    <h3>Select the charset:</h3>
+
+    <section class="RadioButton">
+        <div class="CharsetSelect">
+            <input type="radio"
+                   name="charSet"
+                   id="minuscoleMaiuscoleNumeri"
+                   value="minuscoleMaiuscoleNumeri"
+                   checked>
+            <label for="minuscoleMaiuscoleNumeri">Minuscole, maiuscole e numeri</label>
+        </div>
+        <div class="CharsetSelect">
+            <input type="radio"
+                   name="charSet"
+                   id="minuscoleMaiuscoleNumeriSpecial"
+                   value="minuscoleMaiuscoleNumeriSpecial">
+            <label for="minuscoleMaiuscoleNumeriSpecial">Minuscole, maiuscole, numeri e caratteri speciali</label>
+            <div class="SpecialCharacters">
+                <input id="!" type="checkbox" name="special" value="!" class="prova"/>
+                <label for="!">!</label>
+                <input id="?" type="checkbox" name="special" value="?"/>
+                <label for="?">?</label>
+                <input id="$" type="checkbox" name="special" value="$"/>
+                <label for="$">$</label>
+                <input id="%" type="checkbox" name="special" value="%"/>
+                <label for="%">%</label>
+                <input id="&" type="checkbox" name="special" value="&"/>
+                <label for="&">&</label>
+            </div>
+        </div>
+        <div class="CharsetSelect">
+            <input type="radio"
+                   name="charSet"
+                   id="numeri"
+                   value="numeri">
+            <label for="numeri">Numeri</label>
+        </div>
     </section>
+
+    <section class="PassLength">
+        <label for="passLength">Password length:</label>
+        <input type="number" max="20" id="passLength" value="8" class="numPassLength">
+        <span id="error">*</span><br>
+    </section>
+
+    <section class="Password">
+        <label for="pwd">You password is:</label>
+        <span id="pwd" class="finalPassword">(Click Generate)</span>
+    </section>
+
+    <section class="Buttons">
+        <input type="button" id="clear" onclick="refresh()" value="Clear" class="Button">
+        <input type="button" id="generate" onclick="generate()" value="Generate" class="Button">
+    </section>
+</main>
+<script src="pwd.js"></script>
 </body>
 </html>
